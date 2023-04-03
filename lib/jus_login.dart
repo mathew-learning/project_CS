@@ -12,7 +12,25 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+      final usernameValue = TextEditingController();
+      final passwordValue = TextEditingController();
 
+      
+
+      void checklogin(){
+      final username = usernameValue.text;
+      final password = passwordValue.text;
+
+        if (username == 'Admin' && password == 'Admin') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DashBoard()),
+            );
+        }else{
+          
+        }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +41,9 @@ class _LoginPageState extends State<LoginPage> {
         
         children: [
           const Icon(Icons.login_sharp, size: 50),
-          const TextField(
+           TextField(
               keyboardType: TextInputType.emailAddress,
+              controller: usernameValue,
               decoration: InputDecoration(
               hintText: 'Username',
               border: OutlineInputBorder(),
@@ -32,8 +51,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
             
             ),
-          const TextField(
+          TextField(
+              
               keyboardType: TextInputType.visiblePassword,
+              controller: passwordValue,
               decoration: InputDecoration(
               hintText: 'Password',
               border: OutlineInputBorder(),
@@ -42,13 +63,10 @@ class _LoginPageState extends State<LoginPage> {
             
             ),
           const SizedBox(height: 16.0),
-          ElevatedButton(onPressed:(){
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DashBoard()),
-            );
-          },
+          ElevatedButton(onPressed:checklogin,
   child: const Text('Login')),
+
+     
     
 
         ],
