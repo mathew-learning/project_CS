@@ -66,9 +66,11 @@ class dashboardPageOne extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    String _selectedItem;
     return  
 
           Column(
+            
   children: [TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
@@ -128,6 +130,28 @@ class dashboardPageOne extends StatelessWidget{
             ),
             
             ),
+            DropdownButton(
+    value: "New York",
+    items: [ //add items in the dropdown 
+      DropdownMenuItem(
+        child: Text("New York"),
+        value: "New York"
+      ),
+
+      DropdownMenuItem(
+        child: Text("Tokyo"),
+        value: "Tokyo",
+      ),
+
+      DropdownMenuItem(
+        child: Text("Moscow"),
+        value: "Moscow",
+      )
+    ],
+    onChanged: (value){ //get value when changed
+        print("You selected $value");
+    },
+),
             TextField(
               
               keyboardType: TextInputType.visiblePassword,
