@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
       void checklogin(){
       final username = usernameValue.text;
       final password = passwordValue.text;
+      print(username);
 
         if (username == 'Admin' && password == 'Admin') {
             Navigator.push(

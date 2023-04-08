@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'data_base.dart';
+import 'report_page.dart';
+
 
 class DashBoard extends StatefulWidget {
 
@@ -63,16 +66,28 @@ class _DashBoardState extends State<DashBoard> {
 }
 
 class dashboardPageOne extends StatelessWidget{
+    final companyName = TextEditingController();
+    final state = TextEditingController();
+    final city = TextEditingController();
+    final address = TextEditingController();
+    final contact = TextEditingController();
+    final email = TextEditingController();
+    
+
+
+ 
+
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    String _selectedItem;
     return  
 
           Column(
             
   children: [TextField(
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
+              controller: companyName,
+
               decoration: InputDecoration(
               hintText: 'Company Name',
               border: OutlineInputBorder(),
@@ -83,6 +98,8 @@ class dashboardPageOne extends StatelessWidget{
           TextField(
               
               keyboardType: TextInputType.visiblePassword,
+              controller: state,
+
               decoration: InputDecoration(
               hintText: 'State',
               border: OutlineInputBorder(),
@@ -93,6 +110,8 @@ class dashboardPageOne extends StatelessWidget{
             TextField(
               
               keyboardType: TextInputType.visiblePassword,
+              controller: city,
+
               decoration: InputDecoration(
               hintText: 'City',
               border: OutlineInputBorder(),
@@ -103,6 +122,8 @@ class dashboardPageOne extends StatelessWidget{
             TextField(
               
               keyboardType: TextInputType.visiblePassword,
+              controller: address,
+
               decoration: InputDecoration(
               hintText: 'Address',
               border: OutlineInputBorder(),
@@ -113,6 +134,8 @@ class dashboardPageOne extends StatelessWidget{
             TextField(
               
               keyboardType: TextInputType.visiblePassword,
+              controller: contact,
+
               decoration: InputDecoration(
               hintText: 'Contact',
               border: OutlineInputBorder(),
@@ -123,6 +146,8 @@ class dashboardPageOne extends StatelessWidget{
             TextField(
               
               keyboardType: TextInputType.visiblePassword,
+              controller: email,
+
               decoration: InputDecoration(
               hintText: 'Email',
               border: OutlineInputBorder(),
@@ -130,40 +155,26 @@ class dashboardPageOne extends StatelessWidget{
             ),
             
             ),
-            DropdownButton(
-    value: "New York",
-    items: [ //add items in the dropdown 
-      DropdownMenuItem(
-        child: Text("New York"),
-        value: "New York"
-      ),
-
-      DropdownMenuItem(
-        child: Text("Tokyo"),
-        value: "Tokyo",
-      ),
-
-      DropdownMenuItem(
-        child: Text("Moscow"),
-        value: "Moscow",
-      )
-    ],
-    onChanged: (value){ //get value when changed
-        print("You selected $value");
-    },
-),
-            TextField(
-              
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-              hintText: 'Password',
-              border: OutlineInputBorder(),
-              
-            ),
             
-            ),
+            // TextField(
+              
+            //   keyboardType: TextInputType.visiblePassword,
+            //   decoration: InputDecoration(
+            //   hintText: 'Password',
+            //   border: OutlineInputBorder(),
+              
+            // ),
+            
+            // ),
             const SizedBox(height: 16.0),
-          ElevatedButton(onPressed:(){Text:('submitted');},
+          ElevatedButton(onPressed:(){
+              dbConnections(companyName.text,state.text,city.text,address.text,contact.text,email.text);
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RESULTS()),
+            );
+            
+          },
   child: const Text('Submit')),
     
     
