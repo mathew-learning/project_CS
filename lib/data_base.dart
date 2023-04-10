@@ -4,15 +4,13 @@ import 'package:postgres/postgres.dart';
 
 
 
-String data(row){
-  final dataValue = row.toString();
-  return dataValue;
 
-}
+
+
 
 
 Future<void> dbConnections(String companyName, String state, String city,String address,String contact,String email) async {
-final conn = PostgreSQLConnection('host', port, 'database',username:,password:);
+final conn = PostgreSQLConnection('localhost', 5432, 'myfirstpostgresDB',username:'postgres',password:'Jas@lisa27');
 
 
 
@@ -36,10 +34,10 @@ final conn = PostgreSQLConnection('host', port, 'database',username:,password:);
 
 
 
-Future<void> getDATA() async {
+Future<List<String>> getDATA() async {
 final conn = PostgreSQLConnection('localhost', 5432, 'myfirstpostgresDB',username:'postgres',password:'Jas@lisa27');
 
-
+final rows = <String>[];
 
 
 
@@ -47,7 +45,7 @@ final conn = PostgreSQLConnection('localhost', 5432, 'myfirstpostgresDB',usernam
     await conn.open();
     final result = await conn.query('SELECT * FROM customer_cs');
         for (final row in result) {
-          data(row);
+          rows.add(row.toString());
     }
 
   } catch (e) {
@@ -55,6 +53,6 @@ final conn = PostgreSQLConnection('localhost', 5432, 'myfirstpostgresDB',usernam
   } finally {
     await conn.close();
   }
-
+return rows;
 }
 
